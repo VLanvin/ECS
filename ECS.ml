@@ -69,7 +69,7 @@ module Make (Key : KEY) = struct
   (* Register a component *)
   let register_component c = components := c :: !components
 
-  (* Creates a first-order module representing a component *)
+  (* Creates a first-class module representing a component *)
   let new_component props deps = 
     let entities = ref [] in
     let module T = struct
@@ -103,7 +103,7 @@ module Make (Key : KEY) = struct
     register_component (module T : COMPONENT);
     (module T : COMPONENT)
 
-  (* Creates a first-order module representing a property *)
+  (* Creates a first-class module representing a property *)
   let new_property (type s) ?default () = 
     let table = Hashtbl.create 10 in
     let module T = struct
